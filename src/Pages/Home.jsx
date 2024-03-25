@@ -1,8 +1,14 @@
+import Banner from "../Component/Banner";
+import Category from "../Component/Category";
+import Featured from "../Component/Featured";
+
 const Home = () => {
   return (
-    <div>
-      <h1>heloo i am Home</h1>
-    </div>
+    <main>
+      <Banner></Banner>
+      <Category></Category>
+      <Featured></Featured>
+    </main>
   );
 };
 
