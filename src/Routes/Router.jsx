@@ -24,6 +24,7 @@ export const Router = createBrowserRouter([
       {
         path: "/applied",
         element: <Applied></Applied>,
+        loader: () => fetch("../../public/jobs.json"),
       },
       {
         path: "/blogs",

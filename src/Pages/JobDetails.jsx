@@ -2,9 +2,25 @@ import { useLoaderData, useParams } from "react-router-dom";
 
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { setJobApplication } from "../Utilies/LocalStorage";
 
 const JobDetails = () => {
-  const notify = () =>
+  const jobDetails = useLoaderData();
+  const { id } = useParams();
+  const intId = parseInt(id);
+  const job = jobDetails.find((jobDetail) => jobDetail.id === intId);
+  const {
+    job_description,
+    job_responsibility,
+    educational_requirements,
+    experiences,
+    job_title,
+    salary,
+    contact_information,
+  } = job;
+
+  const notify = () => {
+    setJobApplication(intId);
     toast("Successfully Applied!!", {
       position: "top-right",
       autoClose: 2000,
@@ -16,18 +32,8 @@ const JobDetails = () => {
       theme: "light",
       transition: Bounce,
     });
-  const jobDetails = useLoaderData();
-  const { id } = useParams();
-  const job = jobDetails.find((jobDetail) => jobDetail.id === parseInt(id));
-  const {
-    job_description,
-    job_responsibility,
-    educational_requirements,
-    experiences,
-    job_title,
-    salary,
-    contact_information,
-  } = job;
+  };
+
   return (
     <section className="flex flex-col md:flex-row  gap-10 mt-10 mb-10 ">
       <div className="border border-primary p-4 rounded-2xl w-2/3 space-y-6">

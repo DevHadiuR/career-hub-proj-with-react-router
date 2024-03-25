@@ -8,8 +8,12 @@ export const getStoredJobApplication = () => {
 };
 
 export const setJobApplication = (id) => {
+  const storedData = getStoredJobApplication();
 
-    
-  const setApplication = JSON.stringify(id);
-
+  const exits = storedData.find((data) => data == id);
+  console.log(exits, typeof exits);
+  if (!exits) {
+    storedData.push(id);
+    localStorage.setItem("job-Application", JSON.stringify(storedData));
+  }
 };
